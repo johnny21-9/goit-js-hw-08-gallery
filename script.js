@@ -51,6 +51,7 @@ function closeModal () {
     //Cleaning alt and src:
     lightboxPhotoContainer.alt = '';
     lightboxPhotoContainer.src = '';
+    window.removeEventListener('keydown', onEscKeydown);
 }
 
 function openModal(event) {
@@ -59,5 +60,14 @@ function openModal(event) {
         return;
     }
     
+    window.addEventListener('keydown', onEscKeydown);
     lightboxRef.classList.toggle('is-open');
+}
+
+function onEscKeydown(event) {
+    console.log(event.code);
+    if (event.code === 'Escape') {
+        closeModal()
+    }
+    return
 }
